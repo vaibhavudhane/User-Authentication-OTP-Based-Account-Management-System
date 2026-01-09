@@ -1,5 +1,6 @@
 package com.backend.social.config;
 
+import com.backend.social.exception.TokenExpiredException;
 import com.backend.social.security.UserPrincipal;
 import com.backend.social.util.JwtUtil;
 import jakarta.servlet.FilterChain;
@@ -58,7 +59,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
 
                 String token = header.substring(7);
-                String username = jwtUtil.extractUsername(token);
+             if (jwtUtil.isTokenExpired(token)) {
+                 throw new TokenExpiredException("Token Expired");
+            }
+
+            String username = jwtUtil.extractUsername(token);
                 Long userId = jwtUtil.extractUserId(token);
                 String role = jwtUtil.extractRole(token);
 

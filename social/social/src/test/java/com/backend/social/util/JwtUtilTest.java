@@ -2,12 +2,18 @@ package com.backend.social.util;
 
 import com.backend.social.enums.Role;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class JwtUtilTest {
 
-    private final JwtUtil jwtUtil = new JwtUtil();
+    private final JwtUtil jwtUtil;
+
+    public JwtUtilTest(JwtUtil jwtUtil)
+    {
+        this.jwtUtil=jwtUtil;
+    }
 
     // ---------- TC-01: TOKEN GENERATION ----------
 
