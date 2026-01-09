@@ -44,15 +44,15 @@ API Documentation: Swagger (SpringDoc)
 PROJECT STRUCTURE
 
 src/main/java
- ├── config
- ├── controller
- ├── dto
- ├── entity
- ├── enums
- ├── exceptions
- ├── repository
- ├── service
- └── util
+ - config
+ - controller
+ - dto
+ - entity
+ - enums
+ - exceptions
+ - repository
+ - service
+ - util
 
 ------------------------------------------------------------
 
