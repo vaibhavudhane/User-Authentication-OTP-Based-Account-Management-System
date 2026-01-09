@@ -2,8 +2,8 @@
 
 🌟 User Authentication & OTP-Based Account Management System
 
-A secure, scalable backend application built using Java & Spring Boot that provides JWT-based authentication, OTP verification, and role-based access control.
-This project demonstrates real-world backend practices such as layered architecture, clean code structure, centralized exception handling, and secure authentication flows.
+A secure, scalable backend system built with Java & Spring Boot that provides JWT-based authentication, OTP verification, account recovery, and role-based access control.
+This project demonstrates real-world backend engineering practices including layered architecture, centralized exception handling, secure authentication flows, and clean API design.
 
 ------------------------------------------------------------
 
@@ -11,9 +11,12 @@ FEATURES
 
 Authentication & Security
 - User Registration & Login
-- JWT Token-based Authentication
-- OTP-based Account Verification
-- Role-based Authorization
+- JWT-based authentication
+- OTP-based verification (Email & Mobile)
+- Account blocking & unblocking
+- Forgot username & password recovery
+- Secure password reset flow
+- Role-based authorization (USER, ADMIN)
 - Secure Password Encryption
 - Protected Endpoints
 
@@ -33,11 +36,10 @@ Language: Java
 Framework: Spring Boot
 Security: Spring Security, JWT
 ORM: Hibernate / JPA
-Database: MySQL
+Database: PostgreSQL
 Build Tool: Maven
 Boilerplate Reduction: Lombok
 API Testing: Postman
-API Documentation: Swagger (SpringDoc)
 
 ------------------------------------------------------------
 
@@ -91,15 +93,64 @@ http://localhost:8080
 
 API ENDPOINTS
 
-POST   /auth/register     → Register new user
-POST   /auth/login        → Login & receive JWT
-POST   /auth/send-otp     → Send OTP
-POST   /auth/verify-otp   → Verify OTP
-GET    /user/profile      → Fetch user profile (secured)
+🔐 Authentication & Account APIs
+| Method | Endpoint                             | Auth   | Description                     |
+| ------ | ------------------------------------ | ------ | ------------------------------- |
+| POST   | /api/auth/register                   | Public | Register new user               |
+| POST   | /api/auth/verify-registration-otp    | Public | Verify OTP and activate account |
+| POST   | /api/auth/login                      | Public | Login and receive JWT           |
+| POST   | /api/auth/send-otp                   | Public | Send OTP                        |
+| POST   | /api/auth/verify-otp                 | Public | Verify OTP                      |
+| POST   | /api/auth/forgot-username            | Public | Recover username                |
+| POST   | /api/auth/forgot-password            | Public | Initiate password reset         |
+| POST   | /api/auth/reset-password             | Public | Reset password                  |
+| POST   | /api/auth/block-account              | Public | Block account using token       |
+| POST   | /api/auth/unblock-account/send-otp   | Public | Send OTP for account unblock    |
+| POST   | /api/auth/unblock-account/verify-otp | Public | Verify OTP and unblock          |
+
+👤 User Profile APIs
+Base Path: /api/v1/profile
+| Method | Endpoint                           | Auth       | Description                |
+| ------ | ---------------------------------- | ---------- | -------------------------- |
+| GET    | /api/v1/profile/me                 | JWT (USER) | Get logged-in user profile |
+| PUT    | /api/v1/profile/update             | JWT (USER) | Update profile             |
+| POST   | /api/v1/profile/uploadProfilePhoto | JWT (USER) | Upload profile photo       |
+
+🛡 Admin APIs
+Base Path: /api/admin/users
+| Method | Endpoint                            | Auth        | Description               |
+| ------ | ----------------------------------- | ----------- | ------------------------- |
+| DELETE | /api/admin/users/delete?identifier= | JWT (ADMIN) | Delete user by identifier |
+
 
 ------------------------------------------------------------
 
-SECURITY NOTES
+🧪 Example Requests
+
+LOGIN
+POST /api/auth/login
+Content-Type: application/json
+{
+  "username": "vaibhav",
+  "password": "Password@123"
+}
+
+Access Protected Profile
+GET /api/v1/profile/me
+Authorization: Bearer <JWT_TOKEN>
+
+Send OTP
+POST /api/auth/send-otp
+Content-Type: application/json
+{
+  "username": "vaibhav",
+  "type": "EMAIL",
+  "reason": "LOGIN"
+}
+
+------------------------------------------------------------
+
+🔒 SECURITY NOTES
 
 - JWT is used for stateless authentication
 - Sensitive configuration is ignored using .gitignore
@@ -109,24 +160,23 @@ SECURITY NOTES
 
 ------------------------------------------------------------
 
-WHY I BUILT THIS PROJECT
+🎯 WHY I BUILT THIS PROJECT
 
-- Strengthen Spring Boot backend skills
-- Implement real-world authentication flows
-- Practice JWT & OTP systems
-- Write production-style code
-- Prepare for backend developer roles
+- To Strengthen Spring Boot backend skills
+- To implement real-world authentication flows
+- To understand JWT-based security
+- To practice OTP-based workflows
+- To write production-grade backend code
 
 ------------------------------------------------------------
 
-ABOUT ME
+👨‍💻 ABOUT ME
 
 Name: Vaibhav Udhane
 Role: Backend Java Developer
 Experience: 10 months as a Core Java Trainer
 Skills:
 - Core Java
-- DSA
 - OOPs
 - Collections
 - Spring Boot
