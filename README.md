@@ -244,10 +244,9 @@ Experience:
 ------------------------------------------------------------
 
 📬 Contact
-
-Email: vaibhavudhane1@gmail.com
-GitHub: https://github.com/vaibhavudhane
-Location: Pune, Maharashtra
+- Email: vaibhavudhane1@gmail.com
+- GitHub: https://github.com/vaibhavudhane
+- Location: Pune, Maharashtra
 
 ------------------------------------------------------------
 
