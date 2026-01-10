@@ -128,25 +128,26 @@ Base Path: /api/admin/users
 🧪 Example Requests
 
 LOGIN
-POST /api/auth/login
-Content-Type: application/json
-{
+- To Strengthen Spring Boot backend skills
+- POST /api/auth/login
+- Content-Type: application/json
+- {
   "username": "vaibhav",
   "password": "Password@123"
-}
+  }
 
 Access Protected Profile
-GET /api/v1/profile/me
-Authorization: Bearer <JWT_TOKEN>
+- GET /api/v1/profile/me
+- Authorization: Bearer <JWT_TOKEN>
 
 Send OTP
-POST /api/auth/send-otp
-Content-Type: application/json
-{
+- POST /api/auth/send-otp
+- Content-Type: application/json
+- {
   "username": "vaibhav",
   "type": "EMAIL",
   "reason": "LOGIN"
-}
+  }
 
 ------------------------------------------------------------
 
